@@ -1,0 +1,71 @@
+{
+  "source": "logger-ficticio-v4",
+  "records": [
+    {
+      "call": "WW1AAA",
+      "date": "2026-05-28",
+      "time": "1205",
+      "freq": "14.030",
+      "mode": "CW",
+      "rst_sent": "599",
+      "rst_rcvd": "559",
+      "station": {
+        "lat": "40.4168",
+        "lon": "-3.7038"
+      }
+    },
+    {
+      "call": "EA1MOCK",
+      "date": "2026-05-22",
+      "time": "1100",
+      "freq": "14.200",
+      "mode": "PH",
+      "rst_sent": "59",
+      "rst_rcvd": "59",
+      "station": {
+        "lat": "43.36",
+        "lon": "-8.41"
+      }
+    },
+    {
+      "call": "DK7FAKE",
+      "date": "2026-05-22",
+      "time": "1112",
+      "freq": "7.030",
+      "mode": "CW",
+      "rst_sent": "599",
+      "rst_rcvd": "599",
+      "app": {
+        "PROGRAMNAME_NOTE": "test"
+      }
+    },
+    {
+      "call": "IK2TEST",
+      "date": "2026-05-22",
+      "time": "1130",
+      "freq": "21.074",
+      "mode": "FT8",
+      "rst_sent": "-07",
+      "rst_rcvd": "-09",
+      "gridsquare": "JN45"
+    },
+    {
+      "call": "SP1MOCK",
+      "date": "2026-05-22",
+      "time": "1148",
+      "freq": "10.136",
+      "mode": "FT8",
+      "rst_sent": "-03",
+      "rst_rcvd": "-01"
+    },
+    {
+      "call": "OK1FAKE",
+      "date": "2026-05-22",
+      "time": "1205",
+      "freq": "3.573",
+      "mode": "FT8",
+      "rst_sent": "-14",
+      "rst_rcvd": "-16"
+    }
+  ]
+}

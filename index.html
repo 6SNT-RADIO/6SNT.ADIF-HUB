@@ -1,0 +1,421 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #101418;
+            color: #e0e2e9;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .recessed-well {
+            background: #000000;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+            border: 1px solid #1c2024;
+        }
+        .hardware-gradient {
+            background: linear-gradient(180deg, #12161b 0%, #080a0d 100%);
+        }
+        .grid-gutters {
+            display: grid;
+            gap: 1px;
+            background-color: #1c2024;
+        }
+        .grid-gutters > * {
+            background-color: #101418;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3d4a3e;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#ffdeac",
+                        "surface-well": "#000000",
+                        "on-primary-fixed": "#00210c",
+                        "inverse-on-surface": "#2d3136",
+                        "outline-variant": "#3d4a3e",
+                        "primary": "#ffffff",
+                        "border-active": "#203653",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#432c00",
+                        "on-secondary-container": "#002e3b",
+                        "on-surface-variant": "#bacbb9",
+                        "on-primary-fixed-variant": "#005226",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#006d35",
+                        "secondary-fixed": "#b7eaff",
+                        "status-red": "#ef4444",
+                        "surface-variant": "#31353a",
+                        "primary-fixed": "#73fd9c",
+                        "surface-panel": "#101418",
+                        "primary-fixed-dim": "#54e083",
+                        "on-tertiary-fixed": "#281900",
+                        "surface-container-high": "#272a2f",
+                        "secondary-container": "#159dc0",
+                        "on-surface": "#e0e2e9",
+                        "on-primary": "#003918",
+                        "on-secondary-fixed": "#001f28",
+                        "secondary-fixed-dim": "#65d4f9",
+                        "error-container": "#93000a",
+                        "surface-container-lowest": "#0b0f13",
+                        "primary-container": "#73fd9c",
+                        "inverse-surface": "#e0e2e9",
+                        "outline": "#869486",
+                        "tertiary": "#ffffff",
+                        "on-tertiary-container": "#865c00",
+                        "surface-container-low": "#181c20",
+                        "on-secondary-fixed-variant": "#004e61",
+                        "surface": "#101418",
+                        "on-secondary": "#003543",
+                        "surface-bright": "#36393e",
+                        "on-primary-container": "#007438",
+                        "tertiary-fixed": "#ffdeac",
+                        "border-subtle": "#0f1622",
+                        "surface-container": "#1c2024",
+                        "on-tertiary-fixed-variant": "#604100",
+                        "background": "#101418",
+                        "on-error": "#690005",
+                        "label-muted": "#5d6b87",
+                        "surface-container-highest": "#31353a",
+                        "surface-tint": "#54e083",
+                        "on-background": "#e0e2e9",
+                        "surface-dim": "#101418",
+                        "tertiary-fixed-dim": "#ffba38",
+                        "secondary": "#65d4f9"
+                    },
+                    "spacing": {
+                        "header-h": "48px",
+                        "sidebar-w": "256px",
+                        "footer-h": "32px",
+                        "gutter": "1px",
+                        "panel-pad": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "label-micro": ["JetBrains Mono"],
+                        "display-frequency": ["JetBrains Mono"],
+                        "body-md": ["JetBrains Mono"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "telemetry": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-micro": ["8px", {"letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "display-frequency": ["22px", {"letterSpacing": "0.1em", "fontWeight": "900"}],
+                        "body-md": ["12px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "headline-lg": ["26px", {"lineHeight": "1.2", "fontWeight": "900"}],
+                        "telemetry": ["10px", {"letterSpacing": "0.1em", "fontWeight": "900"}],
+                        "label-caps": ["10px", {"letterSpacing": "0.12em", "fontWeight": "800"}],
+                        "headline-md": ["14px", {"letterSpacing": "0.2em", "fontWeight": "900"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface-panel dark:bg-surface-panel flex justify-between items-center w-full px-4 h-header-h border-b border-outline-variant z-50">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary-fixed">6SNT.ADIF-HUB</span>
+<nav class="flex gap-6">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary hover:bg-surface-bright transition-colors duration-150 cursor-crosshair active:opacity-80" href="#">DASHBOARD</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary hover:bg-surface-bright transition-colors duration-150 cursor-crosshair active:opacity-80" href="#">REPORTS</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="recessed-well px-3 h-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-caps font-label-caps text-on-surface-variant w-48" placeholder="SEARCH_LOGS..." type="text">
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">terminal</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container dark:bg-surface-container flex flex-col h-full w-64 border-r border-outline-variant inset-shadow shadow-well">
+<div class="p-4 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-well border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">radio</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">STATION_ALPHA</div>
+<div class="font-label-micro text-label-micro text-secondary">144.200 MHz / CW</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-4 flex flex-col gap-1">
+<a class="bg-surface-well border-l-4 border-secondary text-secondary font-bold flex items-center gap-4 px-4 py-3 font-label-caps text-label-caps scale-95 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">upload_file</span> INGEST
+                </a>
+<a class="text-on-surface-variant opacity-70 flex items-center gap-4 px-4 py-3 font-label-caps text-label-caps hover:bg-surface-container-high hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">query_stats</span> PROCESS
+                </a>
+<a class="text-on-surface-variant opacity-70 flex items-center gap-4 px-4 py-3 font-label-caps text-label-caps hover:bg-surface-container-high hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">call_merge</span> MERGE
+                </a>
+<a class="text-on-surface-variant opacity-70 flex items-center gap-4 px-4 py-3 font-label-caps text-label-caps hover:bg-surface-container-high hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">file_download</span> EXPORT
+                </a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full hardware-gradient border border-outline-variant py-2 font-label-caps text-label-caps text-primary hover:border-primary transition-all mb-4">
+                    NEW_LOG_IMPORT
+                </button>
+<a class="text-on-surface-variant opacity-70 flex items-center gap-4 px-4 py-2 font-label-caps text-label-caps hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">settings</span> SETTINGS
+                </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto p-gutter bg-surface-container-lowest grid grid-cols-12 grid-rows-[auto_1fr] gap-px">
+<!-- Ingest Workspace Header -->
+<div class="col-span-12 p-panel-pad bg-surface-panel border-b border-outline-variant flex justify-between items-end">
+<div>
+<h1 class="font-headline-lg text-headline-lg uppercase text-primary">INGESTION_STATION_01</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-60">READY FOR MULTIFORMAT STREAMING</p>
+</div>
+<div class="flex gap-2">
+<div class="px-3 py-1 bg-surface-well border-l-2 border-primary-fixed flex flex-col">
+<span class="font-label-micro text-label-micro uppercase opacity-50">STATUS</span>
+<span class="font-label-caps text-label-caps text-primary-fixed animate-pulse">SYSTEM_LISTENING</span>
+</div>
+</div>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="col-span-12 lg:col-span-8 p-panel-pad bg-surface-panel">
+<div class="h-full recessed-well border-2 border-dashed border-tertiary-fixed-dim/30 flex flex-col items-center justify-center p-12 text-center group hover:border-tertiary-fixed transition-colors duration-500">
+<span class="material-symbols-outlined text-6xl text-tertiary-fixed-dim mb-4 group-hover:scale-110 transition-transform">cloud_upload</span>
+<h2 class="font-headline-md text-headline-md uppercase text-primary mb-2">DRAG &amp; DROP TELEMETRY FILES</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-8">INITIATE HIGH-SPEED UPLOAD FOR SYSTEM PROCESSING. SUPPORTED ENCODINGS:</p>
+<div class="flex flex-wrap justify-center gap-4">
+<div class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 hardware-gradient border border-outline-variant flex items-center justify-center font-bold text-xs">ADI</div>
+<span class="font-label-micro text-label-micro">ADIF_STD</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 hardware-gradient border border-outline-variant flex items-center justify-center font-bold text-xs">ADX</div>
+<span class="font-label-micro text-label-micro">XML_ADIF</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 hardware-gradient border border-outline-variant flex items-center justify-center font-bold text-xs">CBR</div>
+<span class="font-label-micro text-label-micro">CABRILLO</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 hardware-gradient border border-outline-variant flex items-center justify-center font-bold text-xs">CSV</div>
+<span class="font-label-micro text-label-micro">COMMA_SEP</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 hardware-gradient border border-outline-variant flex items-center justify-center font-bold text-xs">XLSX</div>
+<span class="font-label-micro text-label-micro">EXCEL_P1</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 hardware-gradient border border-outline-variant flex items-center justify-center font-bold text-xs">JSON</div>
+<span class="font-label-micro text-label-micro">SCHEMA_V4</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ingest Queue -->
+<div class="col-span-12 lg:col-span-4 p-panel-pad bg-surface-panel flex flex-col gap-4">
+<div class="flex items-center justify-between border-b border-outline-variant pb-2">
+<span class="font-headline-md text-headline-md uppercase">INGEST_QUEUE</span>
+<span class="font-label-micro text-label-micro bg-secondary-container/20 text-secondary px-2">3 ACTIVE</span>
+</div>
+<div class="flex flex-col gap-px bg-outline-variant overflow-hidden">
+<!-- Queue Item 1 -->
+<div class="bg-surface-well p-3 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<div class="font-label-caps text-label-caps text-primary">WPX_CONTEST_2023.ADI</div>
+<span class="font-label-micro text-label-micro text-secondary">82%</span>
+</div>
+<div class="h-1 bg-surface-container w-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-fixed-dim to-secondary-fixed-dim w-[82%]"></div>
+</div>
+<div class="flex justify-between text-on-surface-variant font-label-micro text-label-micro">
+<span class="">4,281 / 5,221 RECS</span>
+<span class="">ETA: 12S</span>
+</div>
+</div>
+<!-- Queue Item 2 -->
+<div class="bg-surface-well p-3 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<div class="font-label-caps text-label-caps text-primary">FIELD_DAY_LOG.CSV</div>
+<span class="font-label-micro text-label-micro text-secondary">PENDING</span>
+</div>
+<div class="h-1 bg-surface-container w-full">
+<div class="h-full bg-secondary-container/20 w-0"></div>
+</div>
+<div class="flex justify-between text-on-surface-variant font-label-micro text-label-micro">
+<span class="">WAITING FOR MAPPER</span>
+<span class="">QUEUED</span>
+</div>
+</div>
+</div>
+<!-- Inference Config -->
+<div class="mt-4 flex flex-col gap-4 border-t border-outline-variant pt-4">
+<span class="font-headline-md text-headline-md uppercase">SEMANTIC_INFERENCE</span>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between group cursor-pointer">
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary transition-colors">INFER_BAND_FROM_FREQ</span>
+<div class="w-8 h-4 bg-surface-well border border-outline-variant relative">
+<div class="absolute inset-y-0.5 left-0.5 w-3 bg-primary-fixed-dim shadow-[0_0_8px_rgba(115,253,156,0.6)]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary transition-colors">MAIDENHEAD_GEOCONVERSION</span>
+<div class="w-8 h-4 bg-surface-well border border-outline-variant relative">
+<div class="absolute inset-y-0.5 right-0.5 w-3 bg-primary-fixed-dim shadow-[0_0_8px_rgba(115,253,156,0.6)]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<span class="font-label-caps text-label-caps text-on-surface-variant group-hover:text-primary transition-colors">STATE_FROM_EXCHANGE</span>
+<div class="w-8 h-4 bg-surface-well border border-outline-variant relative">
+<div class="absolute inset-y-0.5 left-0.5 w-3 bg-surface-container-highest"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column Mapper Section -->
+<div class="col-span-12 p-panel-pad bg-surface-panel border-t border-outline-variant">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary">table_chart</span>
+<h2 class="font-headline-md text-headline-md uppercase">COLUMN_MAPPER: FIELD_DAY_LOG.CSV</h2>
+<span class="ml-auto font-label-micro text-label-micro text-status-red uppercase">! AUTOMAP_FAILED: MANUAL_OVERRIDE_REQUIRED</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Mapper Card 1 -->
+<div class="recessed-well p-4 flex flex-col gap-3 border-l-2 border-secondary">
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">FILE_COLUMN</span>
+<span class="font-headline-md text-headline-md text-primary">Indicativo</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-center">link</span>
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">ADIF_FIELD</span>
+<div class="recessed-well mt-1 px-3 py-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary">CALL</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Mapper Card 2 -->
+<div class="recessed-well p-4 flex flex-col gap-3 border-l-2 border-secondary">
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">FILE_COLUMN</span>
+<span class="font-headline-md text-headline-md text-primary">Frecuencia</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-center">link</span>
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">ADIF_FIELD</span>
+<div class="recessed-well mt-1 px-3 py-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary">FREQ</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Mapper Card 3 (Unmapped) -->
+<div class="recessed-well p-4 flex flex-col gap-3 border-l-2 border-status-red">
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">FILE_COLUMN</span>
+<span class="font-headline-md text-headline-md text-primary">Hora_UTC</span>
+</div>
+<span class="material-symbols-outlined text-status-red text-center animate-pulse">warning</span>
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">ADIF_FIELD</span>
+<div class="recessed-well mt-1 px-3 py-2 flex items-center justify-between border-status-red/50">
+<span class="font-label-caps text-label-caps text-on-surface-variant italic">SELECT_FIELD...</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Mapper Card 4 -->
+<div class="recessed-well p-4 flex flex-col gap-3 border-l-2 border-secondary">
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">FILE_COLUMN</span>
+<span class="font-headline-md text-headline-md text-primary">Modo</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-center">link</span>
+<div class="flex flex-col">
+<span class="font-label-micro text-label-micro opacity-50 uppercase">ADIF_FIELD</span>
+<div class="recessed-well mt-1 px-3 py-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary">MODE</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex justify-end gap-3">
+<button class="px-6 h-8 border border-outline-variant font-label-caps text-label-caps text-on-surface-variant hover:bg-surface-well transition-all">IGNORE_UNMAPPED</button>
+<button class="px-6 h-8 hardware-gradient border border-secondary text-secondary font-label-caps text-label-caps hover:shadow-[0_0_15px_rgba(101,212,249,0.3)] transition-all">COMMIT_MAP_&amp;_PROCESS</button>
+</div>
+</div>
+</main>
+</div>
+<!-- Telemetry Footer -->
+<footer class="bg-surface-well dark:bg-surface-well fixed bottom-0 w-full h-footer-h border-t border-outline-variant flex justify-between items-center px-4 z-50">
+<div class="flex items-center gap-6">
+<span class="font-label-micro text-label-micro text-on-surface-variant">SYSTEM_READY // 0xDEADBEEF</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed-dim shadow-[0_0_8px_#73fd9c] animate-pulse"></div>
+<span class="font-telemetry text-telemetry uppercase text-primary-fixed-dim">DATA_STREAM_ACTIVE</span>
+</div>
+</div>
+<div class="flex items-center gap-6 font-telemetry text-telemetry uppercase text-tertiary dark:text-tertiary-fixed-dim">
+<span class="hover:text-primary transition-colors cursor-default">TOTAL_QSOS: 42,109</span>
+<span class="hover:text-primary transition-colors cursor-default">UNIQUE_CALLS: 12,854</span>
+<span class="hover:text-primary transition-colors cursor-default">DUPS_RESOLVED: 842</span>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the drag & drop zone
+        const dropZone = document.querySelector('.recessed-well.border-dashed');
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#ffba38';
+            dropZone.style.backgroundColor = 'rgba(255, 186, 56, 0.05)';
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.borderColor = 'rgba(255, 186, 56, 0.3)';
+            dropZone.style.backgroundColor = '#000000';
+        });
+
+        // Toggle simulation for inference switches
+        document.querySelectorAll('.group.cursor-pointer').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const thumb = toggle.querySelector('.w-3');
+                if (thumb.classList.contains('left-0.5')) {
+                    thumb.classList.remove('left-0.5', 'bg-surface-container-highest');
+                    thumb.classList.add('right-0.5', 'bg-primary-fixed-dim', 'shadow-[0_0_8px_rgba(115,253,156,0.6)]');
+                } else if (thumb.classList.contains('right-0.5')) {
+                    thumb.classList.remove('right-0.5', 'bg-primary-fixed-dim', 'shadow-[0_0_8px_rgba(115,253,156,0.6)]');
+                    thumb.classList.add('left-0.5', 'bg-surface-container-highest');
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

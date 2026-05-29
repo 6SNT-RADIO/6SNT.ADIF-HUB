@@ -1,0 +1,144 @@
+{
+  "app": {
+    "errorUnknown": "Unknown processing failure"
+  },
+  "language": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English"
+  },
+  "topNav": {
+    "searchTitle": "Filter QSOs",
+    "searchPlaceholder": "FILTER_QSOS..."
+  },
+  "views": {
+    "INGEST": {
+      "title": "MULTIFORMAT_INGEST",
+      "subtitle": "LOAD · NORMALIZE · DEDUPE · EXPORT"
+    },
+    "PROCESS": {
+      "title": "PROCESS",
+      "subtitle": "MAP COLUMNS AND NORMALIZE TO ADIF"
+    },
+    "MERGE": {
+      "title": "MERGE",
+      "subtitle": "DETECT DUPLICATES AND RESOLVE CONFLICTS"
+    },
+    "EXPORT": {
+      "title": "EXPORT",
+      "subtitle": "GENERATE THE CONSOLIDATED ADIF"
+    }
+  },
+  "shell": {
+    "status": "STATUS",
+    "apiError": "API_ERROR",
+    "emptyProcess": "LOAD FILES IN INGEST TO MAP COLUMNS",
+    "emptyMerge": "PROCESS THE MAPPING BEFORE DEDUPE",
+    "emptyExport": "NO NORMALIZED QSOS READY TO EXPORT YET"
+  },
+  "sideNav": {
+    "processor": "ADIF_PROCESSOR",
+    "adifLocal": "ADIF 3.1.7 · LOCAL",
+    "newImport": "NEW_IMPORT",
+    "items": {
+      "INGEST": "INGEST",
+      "PROCESS": "PROCESS",
+      "MERGE": "MERGE",
+      "EXPORT": "EXPORT"
+    }
+  },
+  "dropZone": {
+    "headline": "DRAG AND DROP YOUR FILES",
+    "description": "START LOCAL PROCESSING. SUPPORTED FORMATS:",
+    "formats": {
+      "ADI": "ADIF_STD",
+      "ADX": "ADIF_XML",
+      "CBR": "CABRILLO",
+      "CSV": "COMMA_SEP",
+      "XLSX": "EXCEL",
+      "JSON": "SCHEMA"
+    }
+  },
+  "ingestQueue": {
+    "title": "INGEST_QUEUE",
+    "activeSingular": "ACTIVE",
+    "activePlural": "ACTIVE",
+    "empty": "NO FILES · DRAG TO START",
+    "analyzing": "ANALYZING",
+    "records": "REC",
+    "review": "REVIEW",
+    "ok": "OK"
+  },
+  "semanticInference": {
+    "title": "SEMANTIC_INFERENCE",
+    "inferBand": "INFER_BAND_FROM_FREQ",
+    "maidenhead": "MAIDENHEAD_GEOCONVERSION",
+    "state": "STATE_FROM_EXCHANGE"
+  },
+  "mapper": {
+    "title": "COLUMN_MAPPER",
+    "incomplete": "! AUTOMAP INCOMPLETE: MANUAL ADJUSTMENT",
+    "ready": "AUTOMAP READY",
+    "column": "COLUMN",
+    "field": "ADIF_FIELD",
+    "select": "SELECT...",
+    "process": "PROCESS_MAPPING"
+  },
+  "conflicts": {
+    "title": "CONFLICT_REVIEW",
+    "open": "OPEN",
+    "resolved": "RESOLVED",
+    "openTotal": "{open} OPEN / {total} TOTAL",
+    "field": "FIELD",
+    "incoming": "INCOMING",
+    "existing": "EXISTING",
+    "emptyValue": "(empty)",
+    "noOpen": "NO OPEN CONFLICTS",
+    "dedupe": "DEDUPE",
+    "resolveSelection": "RESOLVE_SELECTION",
+    "strategies": {
+      "use_existing": "USE_EXISTING",
+      "use_incoming": "USE_INCOMING",
+      "merge": "MERGE",
+      "use_newer": "USE_NEWER"
+    }
+  },
+  "preview": {
+    "title": "QSO_PREVIEW",
+    "normalized": "NORMALIZED",
+    "noMatches": "NO MATCHES FOR \"{query}\"",
+    "empty": "NO NORMALIZED ROWS · PROCESS THE MAPPING TO MATERIALIZE QSOS",
+    "headers": {
+      "status": "STATUS",
+      "call": "CALL",
+      "date": "DATE",
+      "time": "TIME",
+      "band": "BAND",
+      "freq": "FREQ",
+      "mode": "MODE"
+    }
+  },
+  "export": {
+    "title": "EXPORT_ADIF",
+    "subtitle": "ADIF 3.1.7 · LOCAL FILE · SQLITE DATABASE",
+    "download": "DOWNLOAD_ADI"
+  },
+  "footer": {
+    "ready": "SYSTEM_READY // LOCAL_ONLY",
+    "flow": "FLOW_ACTIVE",
+    "total": "QSOS_TOTAL",
+    "calls": "CALLSIGNS",
+    "duplicates": "DUPLICATES"
+  },
+  "status": {
+    "idle": "IDLE",
+    "waiting_mapper": "WAITING_FOR_MAPPING",
+    "normalized": "NORMALIZED",
+    "deduped": "DEDUPED",
+    "ready_to_export": "READY_TO_EXPORT",
+    "parsed": "PARSED",
+    "parsing": "PARSING",
+    "conflict": "CONFLICT",
+    "duplicate": "DUPLICATE"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "app": {
+    "errorUnknown": "Fallo desconocido del procesamiento"
+  },
+  "language": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English"
+  },
+  "topNav": {
+    "searchTitle": "Filtrar QSOs",
+    "searchPlaceholder": "FILTRAR_QSOS..."
+  },
+  "views": {
+    "INGEST": {
+      "title": "INGESTA_MULTIFORMATO",
+      "subtitle": "CARGA · NORMALIZA · DEDUPLICA · EXPORTA"
+    },
+    "PROCESS": {
+      "title": "PROCESO",
+      "subtitle": "MAPEA COLUMNAS Y NORMALIZA A ADIF"
+    },
+    "MERGE": {
+      "title": "FUSION",
+      "subtitle": "DETECTA DUPLICADOS Y RESUELVE CONFLICTOS"
+    },
+    "EXPORT": {
+      "title": "EXPORTAR",
+      "subtitle": "GENERA EL ADIF CONSOLIDADO"
+    }
+  },
+  "shell": {
+    "status": "ESTADO",
+    "apiError": "ERROR_API",
+    "emptyProcess": "CARGA ARCHIVOS EN INGESTA PARA MAPEAR",
+    "emptyMerge": "PROCESA EL MAPEO ANTES DE DEDUPLICAR",
+    "emptyExport": "AUN NO HAY QSOS NORMALIZADOS PARA EXPORTAR"
+  },
+  "sideNav": {
+    "processor": "PROCESADOR_ADIF",
+    "adifLocal": "ADIF 3.1.7 · LOCAL",
+    "newImport": "NUEVA_IMPORTACION",
+    "items": {
+      "INGEST": "INGESTA",
+      "PROCESS": "PROCESO",
+      "MERGE": "FUSION",
+      "EXPORT": "EXPORTAR"
+    }
+  },
+  "dropZone": {
+    "headline": "ARRASTRA Y SUELTA TUS ARCHIVOS",
+    "description": "INICIA LA CARGA PARA PROCESAMIENTO LOCAL. FORMATOS SOPORTADOS:",
+    "formats": {
+      "ADI": "ADIF_EST",
+      "ADX": "ADIF_XML",
+      "CBR": "CABRILLO",
+      "CSV": "SEP_COMA",
+      "XLSX": "EXCEL",
+      "JSON": "ESQUEMA"
+    }
+  },
+  "ingestQueue": {
+    "title": "COLA_DE_INGESTA",
+    "activeSingular": "ACTIVO",
+    "activePlural": "ACTIVOS",
+    "empty": "SIN ARCHIVOS · ARRASTRA PARA EMPEZAR",
+    "analyzing": "ANALIZANDO",
+    "records": "REG",
+    "review": "REVISAR",
+    "ok": "OK"
+  },
+  "semanticInference": {
+    "title": "INFERENCIA_SEMANTICA",
+    "inferBand": "INFERIR_BANDA_POR_FRECUENCIA",
+    "maidenhead": "GEOCONVERSION_MAIDENHEAD",
+    "state": "ESTADO_DESDE_INTERCAMBIO"
+  },
+  "mapper": {
+    "title": "MAPEO_DE_COLUMNAS",
+    "incomplete": "! AUTOMAPEO INCOMPLETO: AJUSTE MANUAL",
+    "ready": "AUTOMAPEO LISTO",
+    "column": "COLUMNA",
+    "field": "CAMPO_ADIF",
+    "select": "SELECCIONA...",
+    "process": "PROCESAR_MAPEO"
+  },
+  "conflicts": {
+    "title": "REVISION_DE_CONFLICTOS",
+    "open": "ABIERTO",
+    "resolved": "RESUELTO",
+    "openTotal": "{open} ABIERTOS / {total} TOTAL",
+    "field": "CAMPO",
+    "incoming": "ENTRANTE",
+    "existing": "EXISTENTE",
+    "emptyValue": "(vacio)",
+    "noOpen": "SIN CONFLICTOS ABIERTOS",
+    "dedupe": "DEDUPLICAR",
+    "resolveSelection": "RESOLVER_SELECCION",
+    "strategies": {
+      "use_existing": "USAR_EXISTENTE",
+      "use_incoming": "USAR_ENTRANTE",
+      "merge": "FUSIONAR",
+      "use_newer": "MAS_RECIENTE"
+    }
+  },
+  "preview": {
+    "title": "VISTA_PREVIA_QSO",
+    "normalized": "NORMALIZADOS",
+    "noMatches": "SIN COINCIDENCIAS PARA \"{query}\"",
+    "empty": "SIN FILAS NORMALIZADAS · PROCESA EL MAPEO PARA MATERIALIZAR QSOS",
+    "headers": {
+      "status": "ESTADO",
+      "call": "INDICATIVO",
+      "date": "FECHA",
+      "time": "HORA",
+      "band": "BANDA",
+      "freq": "FRECUENCIA",
+      "mode": "MODO"
+    }
+  },
+  "export": {
+    "title": "EXPORTAR_ADIF",
+    "subtitle": "ADIF 3.1.7 · ARCHIVO LOCAL · BASE SQLITE",
+    "download": "DESCARGAR_ADI"
+  },
+  "footer": {
+    "ready": "SISTEMA_LISTO // SOLO_LOCAL",
+    "flow": "FLUJO_ACTIVO",
+    "total": "QSOS_TOTAL",
+    "calls": "INDICATIVOS",
+    "duplicates": "DUPLICADOS"
+  },
+  "status": {
+    "idle": "EN_ESPERA",
+    "waiting_mapper": "ESPERANDO_MAPEO",
+    "normalized": "NORMALIZADO",
+    "deduped": "DEDUPLICADO",
+    "ready_to_export": "LISTO_EXPORTAR",
+    "parsed": "ANALIZADO",
+    "parsing": "ANALIZANDO",
+    "conflict": "CONFLICTO",
+    "duplicate": "DUPLICADO"
+  }
+}

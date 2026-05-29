@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tmp/
+.venv/
+venv/
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+build/
+.vite/
+npm-debug.log*
+*.tsbuildinfo
+
+# PyInstaller (.exe packaging)
+dist_exe/
+build_exe/
+*.spec
+
+# Local/private runtime data
+data/
+*.sqlite
+*.sqlite3
+*.db
+*.adi
+*.adif
+*.adx
+*.cbr
+*.log
+*.xlsx
+exports/
+logs/
+screenshots/private/
+
+# Keep sanitized fixtures versionable
+!backend/tests/fixtures/*.adx
+!backend/tests/fixtures/*.cbr
+!backend/tests/fixtures/*.csv
+!backend/tests/fixtures/*.tsv
+!backend/tests/fixtures/*.json
+!backend/tests/fixtures/*.txt
+
+# Set de prueba con datos FICTICIOS (seguro de versionar)
+!sample_logs/
+!sample_logs/**
+
+# Temporary audits/reviews and local automation artifacts
+artifacts/
+docs/pdf/html/
+screen.png
+REPO_AUDIT_PUBLICACION.txt
+*_AUDIT_*.txt
+*_REVIEW.zip
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.zip
+secrets/
