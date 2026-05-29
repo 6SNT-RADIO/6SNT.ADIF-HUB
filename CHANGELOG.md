@@ -9,4 +9,5 @@ This project does not have a public release yet.
 - Prepared repository documentation for public GitHub publication.
 - Added Apache-2.0 license, security policy and contribution guide.
 - Confirmed local-first beta/MVP positioning and public documentation index.
-
+- Hardened ignore rules for CSV and TSV local exports.
+- Added release readiness checklist.
