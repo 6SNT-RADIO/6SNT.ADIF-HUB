@@ -1,6 +1,6 @@
 # Indice documental
 
-Este indice organiza la documentacion operativa de pre-beta. `README.md` no es la fuente de verdad estrategica en esta fase.
+Este indice organiza la documentacion extendida de 6SNT.ADIF-HUB. Para una vision rapida del proyecto, partir por README.md.
 
 ## Tecnico
 
@@ -10,6 +10,7 @@ Este indice organiza la documentacion operativa de pre-beta. `README.md` no es l
 - [SECURITY](../SECURITY.md): reporte seguro y datos que no deben publicarse.
 - [CONTRIBUTING](../CONTRIBUTING.md): reglas para issues, fixtures y PRs.
 - [CHANGELOG](../CHANGELOG.md): cambios publicos pendientes de release.
+- [Release checklist](RELEASE_CHECKLIST.md): verificacion previa a cada release publico.
 
 ## PDFs
 

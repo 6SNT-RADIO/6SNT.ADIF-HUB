@@ -11,3 +11,6 @@ This project does not have a public release yet.
 - Confirmed local-first beta/MVP positioning and public documentation index.
 - Hardened ignore rules for CSV and TSV local exports.
 - Added release readiness checklist.
+- Prepared documentation for the `v0.1.0-beta` public release.
+- Added public download link to GitHub Releases.
+- Generated Windows executable for the `v0.1.0-beta` release asset.

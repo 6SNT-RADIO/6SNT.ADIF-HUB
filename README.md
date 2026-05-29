@@ -21,6 +21,13 @@ cloud service.
 [Quickstart ES](docs/manual/es/GUIA_RAPIDA.md) ·
 [Quickstart EN](docs/manual/en/QUICK_START.md)
 
+## Download
+
+The latest Windows beta build will be published in
+[GitHub Releases](https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/releases/latest).
+
+Before importing anything, test with copies or small subsets of your logs.
+
 ## What Is It?
 
 6SNT.ADIF-HUB is not a daily logger. It does not replace LoTW, eQSL, ClubLog,
@@ -181,4 +188,3 @@ pwsh -File scripts\build_exe.ps1
 This generates local build artifacts under ignored folders such as `dist_exe/`
 and `build_exe/`. Do not commit generated binaries. Public releases should be
 published only after explicit release approval.
-
