@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6SNT.ADIF-HUB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#080808;--surface:#05080f;--panel:#04060a;--well:#000000;
+--border:#162438;--border-sub:#0f1622;
+--text:#f8fafc;--text2:#e0e2e9;--text3:#bacbb9;
+--green:#75ff9e;--green2:#00e676;
+--cyan:#6cdaff;--cyan2:#b8eaff;
+--amber:#ffba38;--amber2:#ffe0b4;
+--red:#ef4444;
+}
+body{background:var(--bg);font-family:'JetBrains Mono',monospace;color:var(--text);min-height:100vh;overflow-x:hidden}
+
+header{
+  position:fixed;top:0;left:0;right:0;height:48px;z-index:100;
+  background:rgba(4,6,10,0.9);backdrop-filter:blur(12px);
+  border-top:2px solid var(--amber);border-bottom:1px solid var(--border-sub);
+  display:flex;align-items:center;justify-content:space-between;padding:0 2rem;
+}
+.logo{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--amber);letter-spacing:0.08em}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color 0.15s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-links a.active{color:var(--green);text-shadow:0 0 8px var(--green)}
+.nav-btn{
+  font-family:inherit;font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;
+  padding:6px 16px;border-radius:6px;cursor:pointer;text-decoration:none;
+  background:linear-gradient(180deg,rgba(0,230,118,0.15) 0%,rgba(0,97,46,0.3) 100%);
+  border:1px solid var(--green);color:var(--text);
+  box-shadow:0 0 12px rgba(0,230,118,0.2);transition:all 0.15s;
+}
+.nav-btn:hover{box-shadow:0 0 20px rgba(0,230,118,0.4)}
+
+main{padding-top:48px}
+
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:4rem 2rem;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 40%,rgba(0,230,118,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(255,186,56,0.3);background:rgba(255,186,56,0.08);
+  padding:4px 12px;border-radius:2px;
+  font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);
+  margin-bottom:2rem;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 6px var(--amber)}
+h1{
+  font-size:clamp(2rem,6vw,4rem);font-weight:800;letter-spacing:0.04em;text-align:center;
+  margin-bottom:1rem;line-height:1.1;
+}
+h1 span.accent{color:var(--green);text-shadow:0 0 20px rgba(117,255,158,0.4)}
+h1 span.dim{color:var(--text3)}
+.hero-sub{
+  font-size:14px;color:var(--text3);text-align:center;max-width:560px;
+  line-height:1.7;margin-bottom:2.5rem;
+}
+.hero-sub strong{color:var(--cyan2)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:3rem}
+.btn-primary{
+  font-family:inherit;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;
+  padding:12px 28px;border-radius:8px;cursor:pointer;text-decoration:none;
+  background:linear-gradient(180deg,rgba(0,230,118,0.2) 0%,rgba(0,97,46,0.4) 100%);
+  border:1px solid var(--green);color:var(--text);
+  box-shadow:0 2px 12px rgba(0,230,118,0.25),inset 0 1px 0 rgba(117,255,158,0.2);
+  transition:all 0.15s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{box-shadow:0 0 24px rgba(0,230,118,0.4),inset 0 1px 0 rgba(117,255,158,0.3)}
+.btn-secondary{
+  font-family:inherit;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;
+  padding:12px 28px;border-radius:8px;cursor:pointer;text-decoration:none;
+  background:linear-gradient(180deg,rgba(17,20,23,1) 0%,rgba(4,6,10,1) 100%);
+  border:1px solid var(--border);color:var(--text2);
+  box-shadow:0 2px 8px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.04);
+  transition:all 0.15s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-secondary:hover{border-color:var(--cyan2);color:var(--cyan);box-shadow:0 0 12px rgba(108,218,255,0.2)}
+.hero-meta{
+  display:flex;align-items:center;gap:16px;font-size:10px;color:var(--text3);
+  text-transform:uppercase;letter-spacing:0.1em;
+}
+.hero-meta-sep{width:1px;height:12px;background:var(--border)}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 6px var(--amber);display:inline-block;margin-right:4px}
+
+.vfo-display{
+  background:var(--well);border:1px solid var(--border);border-radius:4px;
+  padding:1rem 1.5rem;display:flex;align-items:center;gap:2rem;
+  margin-bottom:3rem;box-shadow:inset 0 2px 4px rgba(0,0,0,0.8);
+  font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;
+}
+.vfo-freq{font-size:28px;font-weight:600;color:var(--cyan);letter-spacing:0.06em;text-shadow:0 0 12px rgba(108,218,255,0.4)}
+.vfo-sep{width:1px;height:32px;background:var(--border)}
+.vfo-meta{display:flex;flex-direction:column;gap:4px}
+.vfo-label{font-size:9px;font-weight:700;color:var(--text3);letter-spacing:0.12em}
+.vfo-val{font-size:13px;font-weight:600;color:var(--text2)}
+
+section{padding:4rem 2rem;max-width:960px;margin:0 auto}
+.section-label{
+  font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:0.5rem;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--amber)}
+h2{font-size:1.5rem;font-weight:700;letter-spacing:0.04em;margin-bottom:0.75rem}
+.section-desc{font-size:13px;color:var(--text3);line-height:1.7;max-width:600px;margin-bottom:2.5rem}
+
+.formats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--border-sub);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.format-card{
+  background:var(--surface);padding:1.25rem 1rem;text-align:center;
+  transition:background 0.15s;
+}
+.format-card:hover{background:var(--panel)}
+.format-ext{font-size:18px;font-weight:800;color:var(--green);letter-spacing:0.06em;text-shadow:0 0 8px rgba(117,255,158,0.3);margin-bottom:6px}
+.format-name{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.format-desc{font-size:10px;color:var(--border);color:#3d5060;line-height:1.4}
+
+.problems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:2rem}
+.problem-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:4px;
+  padding:1.25rem;transition:border-color 0.15s;
+}
+.problem-card:hover{border-color:rgba(108,218,255,0.3)}
+.problem-icon{font-size:10px;font-weight:800;letter-spacing:0.1em;color:var(--cyan);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.problem-icon::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--cyan);box-shadow:0 0 4px var(--cyan)}
+.problem-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px}
+.problem-desc{font-size:11px;color:var(--text3);line-height:1.6}
+
+.workflow{display:flex;flex-direction:column;gap:1px;background:var(--border-sub);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.workflow-step{
+  display:flex;align-items:flex-start;gap:1.5rem;padding:1.25rem 1.5rem;
+  background:var(--surface);transition:background 0.15s;
+}
+.workflow-step:hover{background:var(--panel)}
+.step-num{
+  font-size:18px;font-weight:800;color:var(--border);min-width:32px;
+  line-height:1;
+}
+.step-content{flex:1}
+.step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+.step-desc{font-size:11px;color:var(--text3);line-height:1.6}
+.step-tag{
+  display:inline-block;margin-top:6px;
+  font-size:9px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:2px;
+  background:rgba(108,218,255,0.08);border:1px solid rgba(108,218,255,0.2);color:var(--cyan);
+}
+
+.privacy-panel{
+  background:var(--well);border:1px solid var(--border);border-radius:4px;
+  padding:1.5rem;box-shadow:inset 0 2px 4px rgba(0,0,0,0.6);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;
+}
+.privacy-item{display:flex;gap:12px;align-items:flex-start}
+.privacy-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);margin-top:3px;flex-shrink:0}
+.privacy-text{font-size:12px;color:var(--text2);line-height:1.6}
+.privacy-text strong{color:var(--green);font-weight:700}
+
+.release-panel{
+  background:var(--surface);border:1px solid var(--border);border-radius:4px;
+  padding:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.release-info{display:flex;flex-direction:column;gap:6px}
+.release-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--amber);
+}
+.release-version{font-size:24px;font-weight:700;color:var(--text);letter-spacing:0.04em}
+.release-meta{font-size:11px;color:var(--text3)}
+.release-sha{
+  font-size:10px;color:var(--text3);
+  background:var(--well);border:1px solid var(--border-sub);padding:8px 12px;border-radius:2px;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.6);letter-spacing:0.04em;
+}
+.sha-label{color:var(--cyan);font-weight:700;margin-right:8px}
+
+.disclaimer{
+  font-size:11px;color:var(--text3);line-height:1.7;
+  background:rgba(255,186,56,0.04);border:1px solid rgba(255,186,56,0.15);
+  border-left:3px solid var(--amber);padding:1rem 1.25rem;border-radius:0 4px 4px 0;
+  margin-top:2rem;
+}
+
+footer{
+  border-top:1px solid var(--border-sub);padding:2rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  background:var(--well);
+}
+.footer-brand{font-size:12px;font-weight:800;color:var(--amber);letter-spacing:0.08em}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color 0.15s}
+.footer-links a:hover{color:var(--cyan)}
+.footer-meta{font-size:10px;color:var(--text3);letter-spacing:0.06em}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    6SNT.RADIO
+  </div>
+  <nav class="nav-links">
+    <a href="#formats">Formats</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#download">Download</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a href="./es/" class="nav-btn" style="border-color:var(--cyan);color:var(--cyan);box-shadow:none">ES</a>
+    <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/releases/tag/v0.1.0-beta" class="nav-btn">↓ Download</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      v0.1.0-beta — Free &amp; Open Source
+    </div>
+
+    <h1>
+      <span class="dim">6SNT.</span><span class="accent">ADIF-HUB</span>
+    </h1>
+
+    <p class="hero-sub">
+      A local staging area to clean up log exports before they reach somewhere important.<br>
+      <strong>Not a logger. Not a cloud service. Just a cleanup tool.</strong>
+    </p>
+
+    <div class="vfo-display">
+      <div>
+        <div class="vfo-label">ADIF-HUB</div>
+        <div class="vfo-freq">LOCAL-FIRST</div>
+      </div>
+      <div class="vfo-sep"></div>
+      <div class="vfo-meta">
+        <div class="vfo-label">Platform</div>
+        <div class="vfo-val">Windows</div>
+      </div>
+      <div class="vfo-sep"></div>
+      <div class="vfo-meta">
+        <div class="vfo-label">Formats</div>
+        <div class="vfo-val">ADI · ADX · CBR · CSV · XLSX · JSON</div>
+      </div>
+      <div class="vfo-sep"></div>
+      <div class="vfo-meta">
+        <div class="vfo-label">Cloud sync</div>
+        <div class="vfo-val" style="color:var(--red)">None</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/releases/tag/v0.1.0-beta" class="btn-primary">
+        ↓ Download for Windows
+      </a>
+      <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB" class="btn-secondary">
+        ⌥ View on GitHub
+      </a>
+    </div>
+
+    <div class="hero-meta">
+      <span><span class="status-dot"></span>Beta MVP</span>
+      <span class="hero-meta-sep"></span>
+      <span>CA6SNT · Chile</span>
+      <span class="hero-meta-sep"></span>
+      <span>Apache 2.0</span>
+      <span class="hero-meta-sep"></span>
+      <span>No telemetry</span>
+    </div>
+  </section>
+
+  <section id="formats">
+    <div class="section-label">Supported formats</div>
+    <h2>Every format you'll ever have.</h2>
+    <p class="section-desc">Import logs from any source — contest loggers, FT8 software, spreadsheets, or old exports. The hub normalizes everything toward ADIF 3.1.7.</p>
+
+    <div class="formats-grid">
+      <div class="format-card">
+        <div class="format-ext">ADI</div>
+        <div class="format-name">ADIF Text</div>
+        <div class="format-desc">Standard ham radio log export</div>
+      </div>
+      <div class="format-card">
+        <div class="format-ext">ADX</div>
+        <div class="format-name">ADIF XML</div>
+        <div class="format-desc">Structured XML variant of ADIF</div>
+      </div>
+      <div class="format-card">
+        <div class="format-ext" style="color:var(--amber);text-shadow:0 0 8px rgba(255,186,56,0.3)">CBR</div>
+        <div class="format-name">Cabrillo</div>
+        <div class="format-desc">N1MM, Win-Test, contest logs</div>
+      </div>
+      <div class="format-card">
+        <div class="format-ext" style="color:var(--cyan);text-shadow:0 0 8px rgba(108,218,255,0.3)">CSV</div>
+        <div class="format-name">CSV / TSV</div>
+        <div class="format-desc">Spreadsheet exports, custom tools</div>
+      </div>
+      <div class="format-card">
+        <div class="format-ext" style="color:var(--cyan);text-shadow:0 0 8px rgba(108,218,255,0.3)">XLSX</div>
+        <div class="format-name">Excel</div>
+        <div class="format-desc">Local spreadsheet logs</div>
+      </div>
+      <div class="format-card">
+        <div class="format-ext" style="color:var(--amber2)">JSON</div>
+        <div class="format-name">JSON</div>
+        <div class="format-desc">App exports &amp; custom scripts</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problems" style="padding-top:0">
+    <div class="section-label">Use cases</div>
+    <h2>When do you need it?</h2>
+    <p class="section-desc">For any operator who has ever had to merge, clean or convert logs before importing them somewhere that matters.</p>
+
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-icon">Scenario 01</div>
+        <div class="problem-title">Merging logs from different software</div>
+        <div class="problem-desc">Log4OM export + N1MM Cabrillo + WSJT-X ADIF. Different fields, different date formats, overlapping QSOs.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">Scenario 02</div>
+        <div class="problem-title">Cabrillo to ADIF conversion</div>
+        <div class="problem-desc">Contest logs need to become ADIF before uploading to LoTW, QRZ or ClubLog. Generic converters lose fields.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">Scenario 03</div>
+        <div class="problem-title">Duplicate QSOs with small differences</div>
+        <div class="problem-desc">Same QSO logged twice with 1-minute offset or different RST. Identify and resolve before importing.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">Scenario 04</div>
+        <div class="problem-title">Recovering old spreadsheet logs</div>
+        <div class="problem-desc">Years of QSOs in Excel or CSV format. Map columns to ADIF fields and get a clean export.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">Scenario 05</div>
+        <div class="problem-title">FT8 log cleanup</div>
+        <div class="problem-desc">WSJT-X logs accumulated across sessions and computers. Normalize before merging into a master log.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">Scenario 06</div>
+        <div class="problem-title">Pre-import review</div>
+        <div class="problem-desc">Inspect what is actually in a file before touching a clean main logbook or uploading to LoTW.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="workflow" style="padding-top:0">
+    <div class="section-label">Workflow</div>
+    <h2>Six steps. One clean ADIF.</h2>
+    <p class="section-desc">Work only with copies during beta. Review every conflict that matters. Export when ready.</p>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num" style="color:var(--green)">01</div>
+        <div class="step-content">
+          <div class="step-title">Import one or more log files</div>
+          <div class="step-desc">Drop in any supported format. Mix formats freely — the hub handles the differences.</div>
+          <span class="step-tag">ADI · ADX · CBR · CSV · XLSX · JSON</span>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Normalize fields toward ADIF 3.1.7</div>
+          <div class="step-desc">Date formats, band names, mode strings and field names are standardized automatically.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Review column mapping</div>
+          <div class="step-desc">When the source file is ambiguous, map columns manually before processing.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Deduplicate with contextual rules</div>
+          <div class="step-desc">Identify duplicate QSOs with tolerance for small time offsets or RST differences.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Resolve conflicts by field or strategy</div>
+          <div class="step-desc">Choose which source wins field by field, or apply a bulk strategy. Every decision is visible.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num" style="color:var(--amber)">06</div>
+        <div class="step-content">
+          <div class="step-title">Export a consolidated ADI file</div>
+          <div class="step-desc">One clean ADIF for manual review and downstream tools. The original files are untouched.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" style="padding-top:0">
+    <div class="section-label">Privacy</div>
+    <h2>Local-first. No exceptions.</h2>
+    <p class="section-desc">Your logs contain personal data from thousands of third-party operators. They stay on your machine.</p>
+
+    <div class="privacy-panel">
+      <div class="privacy-item">
+        <div class="privacy-dot"></div>
+        <div class="privacy-text"><strong>Files processed locally</strong><br>Nothing leaves your machine during normal operation.</div>
+      </div>
+      <div class="privacy-item">
+        <div class="privacy-dot"></div>
+        <div class="privacy-text"><strong>SQLite working database</strong><br>Local file only. No cloud database, no sync.</div>
+      </div>
+      <div class="privacy-item">
+        <div class="privacy-dot"></div>
+        <div class="privacy-text"><strong>No login required</strong><br>No account, no registration, no telemetry.</div>
+      </div>
+      <div class="privacy-item">
+        <div class="privacy-dot"></div>
+        <div class="privacy-text"><strong>No external sync</strong><br>The hub does not connect to QRZ, LoTW, ClubLog or any external service.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" style="padding-top:0">
+    <div class="section-label">Download</div>
+    <h2>v0.1.0-beta</h2>
+    <p class="section-desc">Beta software. Test with copies or small subsets of logs only. Do not test against your only master log.</p>
+
+    <div class="release-panel">
+      <div class="release-info">
+        <div class="release-tag">
+          <span class="status-dot"></span>
+          Beta Pre-release
+        </div>
+        <div class="release-version">6SNT.ADIF-HUB.exe</div>
+        <div class="release-meta">Windows · 30.9 MB · Apache 2.0</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+        <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/releases/tag/v0.1.0-beta" class="btn-primary">↓ Download for Windows</a>
+        <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB" class="btn-secondary">⌥ GitHub Repository</a>
+      </div>
+    </div>
+
+    <div class="release-sha">
+      <span class="sha-label">SHA256</span>A0247F749798BB51C562074E5B5065D7F3E0705572D5BDFBEA7C7C2411AE69F3
+    </div>
+
+    <div class="disclaimer">
+      This software is provided as-is under the Apache 2.0 license. It is beta software. Always work with copies of your logs. The exported ADIF should be reviewed before uploading to LoTW, eQSL, ClubLog, QRZ or any other service. Built by CA6SNT (Chile) using AI-assisted development.
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">6SNT.RADIO — CA6SNT</div>
+  <div class="footer-links">
+    <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/blob/main/docs/manual/en/USER_GUIDE.md">Docs</a>
+    <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/blob/main/SECURITY.md">Security</a>
+    <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/blob/main/CONTRIBUTING.md">Contributing</a>
+    <a href="https://forums.qrz.com/index.php?threads/6snt-adif-hub-%E2%80%93-free-local-adif-cabrillo-cleanup-tool-for-log-exports.992748/">QRZ Forums</a>
+  </div>
+  <div class="footer-meta">Apache 2.0 · No telemetry · Local-first</div>
+</footer>
+
+</body>
+</html>
