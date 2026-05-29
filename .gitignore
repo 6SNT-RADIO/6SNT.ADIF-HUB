@@ -33,6 +33,8 @@ data/
 *.adx
 *.cbr
 *.log
+*.csv
+*.tsv
 *.xlsx
 exports/
 logs/
