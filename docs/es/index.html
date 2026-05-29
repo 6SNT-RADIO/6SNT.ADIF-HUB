@@ -205,6 +205,45 @@ footer{
 .footer-links a{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color 0.15s}
 .footer-links a:hover{color:var(--cyan)}
 .footer-meta{font-size:10px;color:var(--text3);letter-spacing:0.06em}
+
+@media (max-width: 768px) {
+  header { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .logo { font-size: 13px; }
+  .nav-btn { padding: 5px 10px; font-size: 9px; }
+  h1 { font-size: 2rem; }
+  .hero { padding: 2rem 1rem; }
+  .hero-sub { font-size: 12px; }
+  .vfo-display { flex-direction: column; gap: 1rem; padding: 1rem; }
+  .vfo-freq { font-size: 20px; }
+  .vfo-sep { display: none; }
+  section { padding: 2rem 1rem; }
+  .formats-grid { grid-template-columns: repeat(2, 1fr); }
+  .problems-grid { grid-template-columns: 1fr; }
+  .privacy-panel { grid-template-columns: 1fr; }
+  .release-panel { flex-direction: column; align-items: flex-start; }
+  .release-panel > div:last-child { align-items: flex-start; width: 100%; }
+  .release-panel > div:last-child a { width: 100%; text-align: center; justify-content: center; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
+  .hero-meta { flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .hero-meta-sep { display: none; }
+  .release-sha { font-size: 9px; word-break: break-all; }
+  footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .footer-links { flex-wrap: wrap; gap: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+  .formats-grid { grid-template-columns: repeat(2, 1fr); }
+  h2 { font-size: 1.2rem; }
+  .workflow-step { padding: 1rem; gap: 1rem; }
+  .step-num { font-size: 14px; min-width: 24px; }
+}
+
+@media (max-width: 768px) {
+  #menu-toggle { display: block !important; }
+  #mobile-menu.open { display: flex !important; }
+}
 </style>
 </head>
 <body>
@@ -214,6 +253,9 @@ footer{
     <div class="logo-dot"></div>
     6SNT.RADIO
   </div>
+  <button id="menu-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('open')"
+    style="display:none;background:none;border:1px solid #162438;color:#bacbb9;padding:6px 10px;
+    font-family:inherit;font-size:16px;cursor:pointer;border-radius:4px;line-height:1">☰</button>
   <nav class="nav-links">
     <a href="#formats">Formatos</a>
     <a href="#workflow">Flujo de trabajo</a>
@@ -225,6 +267,19 @@ footer{
     <a href="https://github.com/6SNT-RADIO/6SNT.ADIF-HUB/releases/tag/v0.1.0-beta" class="nav-btn">↓ Descargar</a>
   </div>
 </header>
+
+<div id="mobile-menu" style="display:none;position:fixed;top:48px;left:0;right:0;
+  background:#04060a;border-bottom:1px solid #162438;padding:1rem;z-index:99;
+  flex-direction:column;gap:1rem;">
+  <a href="#formats" style="font-size:12px;font-weight:800;letter-spacing:0.12em;
+    text-transform:uppercase;color:#bacbb9;text-decoration:none">Formatos</a>
+  <a href="#workflow" style="font-size:12px;font-weight:800;letter-spacing:0.12em;
+    text-transform:uppercase;color:#bacbb9;text-decoration:none">Flujo</a>
+  <a href="#privacy" style="font-size:12px;font-weight:800;letter-spacing:0.12em;
+    text-transform:uppercase;color:#bacbb9;text-decoration:none">Privacidad</a>
+  <a href="#download" style="font-size:12px;font-weight:800;letter-spacing:0.12em;
+    text-transform:uppercase;color:#bacbb9;text-decoration:none">Descarga</a>
+</div>
 
 <main>
   <section class="hero">
@@ -437,6 +492,34 @@ footer{
         <div class="privacy-text"><strong>Sin sincronización externa</strong><br>El hub no se conecta a QRZ, LoTW, ClubLog ni a ningún servicio externo.</div>
       </div>
     </div>
+  </section>
+
+  <section id="about" style="padding-top:0">
+    <div class="section-label">Acerca de</div>
+    <h2>Sobre el operador</h2>
+    <p class="section-desc">Soy CA6SNT / CD6SNT, operador de radioafición licenciado en Chile. Llevo en el aire desde principios de 2024 — menos de 2 años y medio de actividad.</p>
+    <p class="section-desc">En ese tiempo he registrado más de 106.000 QSOs, trabajado los seis continentes y participado en contests HF internacionales como CQ WW RTTY, CQ WPX RTTY y CQ WPX SSB. Algunos resultados:</p>
+
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-icon">CQ WW RTTY</div>
+        <div class="problem-title">Single-Op Low 10m</div>
+        <div class="problem-desc">#1 Chile</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">CQ WPX RTTY 2026</div>
+        <div class="problem-title">Single-Op Low 10m</div>
+        <div class="problem-desc">#7 mundial en categoría</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">CQ WPX SSB</div>
+        <div class="problem-title">Rookie Low Power</div>
+        <div class="problem-desc">#3 mundial</div>
+      </div>
+    </div>
+
+    <p class="section-desc" style="margin-top:2rem">En QRZ tengo 16 awards incluyendo DX World Award, Master of Radio Communication en todos los continentes, Grid Squared, World Continents Award y United States Counties Award.</p>
+    <p class="section-desc">Mi estación opera con un Icom IC-7300 con modos digitales vía JTDX y WSJT-X. Como ningún software de log existente se adaptaba exactamente a mi forma de operar, empecé a construir mis propias herramientas. 6SNT.ADIF-HUB es el primer lanzamiento público de ese trabajo.</p>
   </section>
 
   <section id="download" style="padding-top:0">
