@@ -1,5 +1,12 @@
 # STATUS
 
+## 2026-06-13 (landing GitHub Pages alineada a Micro Apps)
+
+- Reemplazadas `docs/index.html` y `docs/es/index.html` por una ficha de producto alineada con el formato actual de `6SNT.MicroApps`: hero de app, captura, chips de versión/plataforma, matriz SHA256, workflow, límites de seguridad y aviso de distribución AS IS.
+- Agregado `docs/assets/page.css` como hoja visual compartida para la landing EN/ES y `docs/assets/6snt-icon.png` como favicon servido por GitHub Pages.
+- El botón principal de descarga ahora apunta directamente al asset `6SNT.ADIF-HUB.exe` del release `v0.1.0-beta`, no solo a la página del release.
+- Actualizados los botones de descarga en `docs/about.html` y `docs/es/about.html` para apuntar también al `.exe` directo.
+
 ## 2026-05-29 (preparacion publica GitHub + README landing)
 
 - Preparado el repositorio local para primera publicacion publica sin commit, remoto ni push.
