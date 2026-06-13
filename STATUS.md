@@ -42,7 +42,7 @@
 - **Textos migrados**: navegacion, encabezados por vista, botones, estados vacios, busqueda, cola de ingesta, mapper, inferencias, revision de conflictos, exportacion, footer y estados visibles pasan por `t(...)`. Se mantienen tokens tecnicos y formatos estandar (`ADIF`, `ADI`, `ADX`, `Cabrillo`, `CSV`, `XLSX`, `JSON`, `QSO`, campos ADIF) sin traducir.
 - **Backend**: mensajes HTTP visibles centralizados en `backend/app/messages.py` con catalogo ES/EN; la API sigue respondiendo en espanol hasta que exista negociacion de idioma.
 - **Documentacion**: creado `docs/I18N.md` con estructura, uso, persistencia, tokens no traducidos y validacion manual recomendada.
-- **Validacion**: `npm run build` OK; `pytest` 11/11 OK con warnings de permisos de cache `.pytest_cache`; `ruff check app tests` OK. El navegador integrado de Codex no estuvo disponible (`iab` sin instancias), por lo que la prueba visual del switch queda pendiente para operador.
+- **Validacion**: `npm run build` OK; `pytest` 11/11 OK con warnings de permisos de cache `.pytest_cache`; `ruff check app tests` OK. La prueba visual del switch queda pendiente para operador.
 - **Git**: esta carpeta no contiene `.git`; `git status`/`git diff --stat` no aplican desde `E:\6SNT.ADIFHUB`. No se hicieron commits ni push.
 
 ## 2026-05-29 (V2: navegación por vistas + backend en español)
@@ -106,7 +106,7 @@ Sigue siendo **MVP** evolucionando a producto. Pendiente para V2 final: resoluci
 
 ## Decision de branding
 
-`6snt.adif_hub_brandbook_specs.md` y `DESIGN.md`/`index.html` difieren en hex exactos (p. ej. fondo `#05080c` vs `#101418`, primario esmeralda vs blanco+`primary-fixed`). Se adopta el **asset concreto `index.html` + `DESIGN.md` como fuente de verdad visual** (coherente entre si y referencia segun `AGENTS.md`); el brandbook queda como guia conceptual de alto nivel.
+`6snt.adif_hub_brandbook_specs.md` y `DESIGN.md`/`index.html` difieren en hex exactos (p. ej. fondo `#05080c` vs `#101418`, primario esmeralda vs blanco+`primary-fixed`). Se adopta el **asset concreto `index.html` + `DESIGN.md` como fuente de verdad visual**; el brandbook queda como guia conceptual de alto nivel.
 
 ## 2026-05-29
 
